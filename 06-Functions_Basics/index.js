@@ -4,6 +4,12 @@
 // input -> performs an action
 // input -> returns some data
 
+//Function without 'return' doesn't produce
+//any value.
+//!Return from function and save into variable.
+
+"use strict";
+
 const user1 = "Reed";
 const user2 = "Doug";
 const text1 = "Hi!";
@@ -18,6 +24,40 @@ const message2 = chat(user2, text2);
 
 console.log(message1);
 console.log(message2);
+
+///////////////////////////////////////
+// Function Declarations vs. Expressions
+
+// FUNCTION DECLARATION
+function fruitProcessor(apples, oranges) {
+  // console.log(apples, oranges);
+  const juice = `Juice with ${apples} apples and ${oranges} oranges.`;
+  return juice;
+}
+//save 'juice' (return from function fruitProcessor)
+const appleJuice = fruitProcessor(5, 0); //arguments
+console.log(appleJuice);
+
+const appleOrangeJuice = fruitProcessor(2, 4);
+console.log(appleOrangeJuice);
+
+//-------------------
+
+function calcAge1(birthYeah) {
+  return 2037 - birthYeah;
+}
+//calling-running-invoking the function:
+const age1 = calcAge1(1991);
+console.log(age1);
+
+//======================
+// FUNCTION EXPRESSION
+const calcAge2 = function (birthYeah) {
+  return 2037 - birthYeah;
+};
+const age2 = calcAge2(1991);
+console.log(age1, age2);
+//
 
 // Challenge: Write a function splitBill() that lets you know how much
 // you need to pay to split any bill between you and your friends.
