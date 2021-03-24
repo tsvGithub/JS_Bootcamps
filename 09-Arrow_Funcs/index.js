@@ -5,6 +5,7 @@
 
 // Implicit returns mean that the value following
 //the => is always returned, so the return keyword is not needed.
+"use strict";
 
 const username = "john";
 
@@ -24,6 +25,28 @@ const result = greetUser(
 );
 
 console.log(result);
+
+//========================
+// Arrow functions
+
+// function expressions (assigned to a variable)
+//implicit return
+const calcAge3 = (birthYeah) => 2037 - birthYeah;
+//call/run/invoke
+const age3 = calcAge3(1991);
+console.log(age3);
+
+//explicit return
+//parameters=='placeholders'
+const yearsUntilRetirement = (birthYeah, firstName) => {
+  const age = 2037 - birthYeah;
+  const retirement = 65 - age;
+  // return retirement;
+  return `${firstName} retires in ${retirement} years`;
+};
+//arguments=='actual values'
+console.log(yearsUntilRetirement(1991, "Jonas"));
+console.log(yearsUntilRetirement(1980, "Bob"));
 
 //================================
 // Challenge: Rewrite your first function from a previous challnge to be an arrow function.

@@ -4,9 +4,9 @@
 // input -> performs an action
 // input -> returns some data
 
-//Function without 'return' doesn't produce
-//any value.
-//!Return from function and save into variable.
+//-Function is Value
+//-Function without 'return' doesn't produce
+//any value. Return from function and save into variable.
 
 "use strict";
 
@@ -15,10 +15,13 @@ const user2 = "Doug";
 const text1 = "Hi!";
 const text2 = "Hello!";
 
+//function declaration with 2 parameters('placeholders')
 function chat(user, text) {
   return `User ${user} says: ${text}`;
 }
 
+//argument=='actual value' for function
+//to fill in that 'placeholder'parameter
 const message1 = chat(user1, text1);
 const message2 = chat(user2, text2);
 
@@ -42,23 +45,41 @@ const appleOrangeJuice = fruitProcessor(2, 4);
 console.log(appleOrangeJuice);
 
 //-------------------
-
-function calcAge1(birthYeah) {
-  return 2037 - birthYeah;
-}
 //calling-running-invoking the function:
-const age1 = calcAge1(1991);
-console.log(age1);
+//- FD can be called before it is defined
+//in the code!
+const num = calcNum(100);
+
+function calcNum(number) {
+  return 1000 - number;
+}
+console.log(num); //
+
+//=====================
+//Main difference between FD vs FE:
+//- FD can be called before it is defined in the code!
 
 //======================
+
 // FUNCTION EXPRESSION
+// function expressions (assigned to a variable)
+//-expressions produce values => FE assign
+//all values to variable
+
+//- FE can't be called before it is defined in the code!
+//calling-running-invoking the function:
+// const age2 = calcAge2(1991);
+//Uncaught ReferenceError: can't access lexical declaration 'calcAge2' before initialization
+
 const calcAge2 = function (birthYeah) {
   return 2037 - birthYeah;
 };
+//calling-running-invoking the function:
 const age2 = calcAge2(1991);
-console.log(age1, age2);
+console.log(num, age2);
 //
 
+//======================
 // Challenge: Write a function splitBill() that lets you know how much
 // you need to pay to split any bill between you and your friends.
 // It should return a message with a number.
