@@ -15,7 +15,24 @@ const user2 = "Doug";
 const text1 = "Hi!";
 const text2 = "Hello!";
 
+///////////////////////////////////////
+// Function Declarations vs. Expressions
+
+// FUNCTION DECLARATION/STATEMENT
+//What is Function Statement/Declarations in JavaScript?
+//The function statement declares a function. A declared
+//function is “saved for later use”, and will be executed
+//later, when it is invoked (called). Just as Variable
+//Declarations must start with “var”, Function
+//Declarations must begin with “function”.
+
+//Function declarations are hoisted but function expressions are not.
+//FD can be used before it's declared
+
+//FD needs a name.
+
 //function declaration with 2 parameters('placeholders')
+//parameters===local variables
 function chat(user, text) {
   return `User ${user} says: ${text}`;
 }
@@ -27,11 +44,8 @@ const message2 = chat(user2, text2);
 
 console.log(message1);
 console.log(message2);
+//--------------------
 
-///////////////////////////////////////
-// Function Declarations vs. Expressions
-
-// FUNCTION DECLARATION
 function fruitProcessor(apples, oranges) {
   // console.log(apples, oranges);
   const juice = `Juice with ${apples} apples and ${oranges} oranges.`;
@@ -62,10 +76,12 @@ console.log(num); //
 //======================
 
 // FUNCTION EXPRESSION
-// function expressions (assigned to a variable)
+// (assigned to a variable)
 //-expressions produce values => FE assign
 //all values to variable
+//(a function value stored in a variable)
 
+//Function declarations are hoisted but function expressions are not.
 //- FE can't be called before it is defined in the code!
 //calling-running-invoking the function:
 // const age2 = calcAge2(1991);
@@ -77,7 +93,9 @@ const calcAge2 = function (birthYeah) {
 //calling-running-invoking the function:
 const age2 = calcAge2(1991);
 console.log(num, age2);
-//
+
+//Arrow function is also Function Expression
+const calcAge3 = (birthYeah) => 2037 - birthYeah;
 
 //======================
 // Challenge: Write a function splitBill() that lets you know how much
