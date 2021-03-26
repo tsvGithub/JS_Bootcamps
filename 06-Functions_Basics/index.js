@@ -77,8 +77,8 @@ console.log(num); //
 
 // FUNCTION EXPRESSION
 // (assigned to a variable)
-//-expressions produce values => FE assign
-//all values to variable
+//-expression produces a value => (ex.,friends.length-1)
+//FE assign all values to variable
 //(a function value stored in a variable)
 
 //Function declarations are hoisted but function expressions are not.

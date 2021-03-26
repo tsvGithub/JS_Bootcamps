@@ -8,6 +8,10 @@ const anotherNum = "hello world";
 //"hello world" === "hello world"
 console.log(num === anotherNum); //true => primitives - passed by value
 
+//===========================
+//primitives 'const' are immutable! => can't change value of 'const'
+//object types (arrays & objects) are mutable => can change value of 'const'
+
 //========================================
 // Objects are data structures which can hold any number of primitives.
 // They do not return equal even if they are the same. This is because
