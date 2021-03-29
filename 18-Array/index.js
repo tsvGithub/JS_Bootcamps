@@ -97,31 +97,52 @@ console.log(friends[friends.length - 1]); //Peter
 
 // Add elements:
 //friends[2]="Lesh"
-//or this way =>
+//or this way => add at the end
+//'push' mutate original array and returns
+//value with length of a new array:
 const newLength = friends.push("Jay");
-console.log(friends); //Array(4) [ "Michael", "Steven", "Peter", "Jay" ]
 console.log(newLength); //4
+console.log(friends); //Array(4) [ "Michael", "Steven", "Peter", "Jay" ]
 
+//at the beggining of array;
+//'unshift' mutate original array and returns
+//value with length of a new array:
 friends.unshift("John");
 console.log(friends); //Array(5) [ "John", "Michael", "Steven", "Peter", "Jay" ]
 
 // Remove elements:
-friends.pop(); // Last
+friends.pop(); // Last element
 const popped = friends.pop();
+//returns removed element
 console.log(popped); //Peter
 console.log(friends); //Array(3) [ "John", "Michael", "Steven" ]
-friends.shift(); // First
+//-------
+friends.shift(); // First element
 console.log(friends); //Array [ "Michael", "Steven" ]
+
+//In wich position is alement?
 console.log(friends.indexOf("Steven")); //1
+console.log(friends); //Array [ "Michael", "Steven" ]
 console.log(friends.indexOf("Bob")); // -1
-friends.push(23);
+//there is no Bob! => '-1'
+
+//Alternative to indexOf:
+//uses 'strict equality'!!!
+//'includes' return 'true/false' wheter
+//element exists in the array:
 console.log(friends.includes("Steven")); //true
 console.log(friends.includes("Bob")); // false
+friends.push(23);
 console.log(friends.includes(23)); // true
+console.log(friends.includes("23")); // false
+
+//The most useful cases for
+//'includes' are conditionals:
 if (friends.includes("Steven")) {
   console.log("You have a friend called Steven");
+  //You have a friend called Steven
 }
-//You have a friend called Steven
+//============================
 
 const firstName = "Zhur";
 //array of variable, string expression & array
@@ -135,6 +156,7 @@ console.log(me);
 // ​4: Array(3) [ "Michael", "Steven", 23 ]
 // ​length: 5
 //------------
+
 const calcAge = function (birthYear) {
   return 2021 - birthYear;
 };
@@ -189,24 +211,66 @@ console.log(favouriteSongs);
 ///////////////////////////////////////
 // Coding Challenge #2
 
-/*
-Steven is still building his tip calculator, using the same rules as before: Tip 15% of the bill if the bill value is between 50 and 300, and if the value is different, the tip is 20%.
-1. Write a function 'calcTip' that takes any bill value as an input and returns the corresponding tip, calculated based on the rules above (you can check out the code from first tip calculator challenge if you need to). Use the function type you like the most. Test the function using a bill value of 100.
-2. And now let's use arrays! So create an array 'bills' containing the test data below.
-3. Create an array 'tips' containing the tip value for each bill, calculated from the function you created before.
-4. BONUS: Create an array 'total' containing the total values, so the bill + tip.
-TEST DATA: 125, 555 and 44
-HINT: Remember that an array needs a value in each position, and that value can actually be the returned value of a function! So you can just call a function as array values (so don't store the tip values in separate variables first, but right in the new array) 😉
-GOOD LUCK 😀
-*/
-
-/*
-const calcTip = function (bill) {
-  return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
-}
-// const calcTip = bill => bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+// Steven is still building his tip calculator,
+// using the same rules as before:
+// Tip 15% of the bill if the bill value is between 50 and 300,
+// and if the value is different, the tip is 20%.
+// 1. Write a function 'calcTip' that takes any bill
+//value as an input and returns the corresponding tip,
+//calculated based on the rules above. Use the function
+//type you like the most. Test the function using a bill value of 100.
+const calcTip = (bill) => {
+  let tip;
+  return (tip = bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2);
+};
+console.log(calcTip(100)); //15
+console.log(calcTip(10)); //2
+console.log(calcTip(301)); //60.2
+// 2. And now let's use arrays! So create an array 'bills' containing the test data below.
 const bills = [125, 555, 44];
+console.log(bills); //Array(3) [ 125, 555, 44 ]
+// 3. Create an array 'tips' containing the tip value for each bill,
+//calculated from the function you created before.
 const tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])];
+
+// 4. BONUS: Create an array 'total' containing the total values, so the bill + tip.
 const totals = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
 console.log(bills, tips, totals);
-*/
+
+// TEST DATA: 125, 555 and 44
+// HINT: Remember that an array needs a value in each position,
+//and that value can actually be the returned value of a function!
+//So you can just call a function as array values (so don't store
+//the tip values in separate variables first, but right in the new array) 😉
+// GOOD LUCK 😀
+
+//===============================
+const facturas = [125, 555, 44];
+const propinas = [];
+const totale = [];
+
+let indeks = 0;
+const calcTips = (bill) => {
+  if (facturas[indeks] >= 50 && facturas[indeks] <= 300) {
+    propinas.push(facturas[indeks] * 0.15);
+  } else {
+    propinas.push(facturas[indeks] * 0.2);
+  }
+
+  totale.push(facturas[indeks] + propinas[indeks]);
+  console.log(
+    `For bill ${facturas[indeks]} you should give tips ${propinas[indeks]}. You have to pay together ${totale[indeks]}.`
+  );
+
+  indeks++;
+
+  if (indeks === facturas.length) {
+    indeks = 0;
+    return;
+  } else {
+    calcTips(facturas);
+  }
+};
+
+calcTips(facturas);
+console.log(propinas, totale);
