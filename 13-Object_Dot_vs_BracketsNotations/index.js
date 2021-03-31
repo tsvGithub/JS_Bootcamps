@@ -23,6 +23,7 @@
 //BRACKETS NOTATION to GET & MODIFY values for dinamic values
 
 //==================================
+"use strict";
 
 let color;
 let hexCode;
@@ -76,13 +77,13 @@ console.log(sound); // meow
 //Thus, "meow" is logged to the console.
 //----
 //dot notation:
-let obj = {
+let obj1 = {
   cat: "meow",
   dog: "woof",
 };
-let dog = "cat";
-let sound = obj.dog; // => obj.dog not obj[let dog]
-console.log(sound); // woof
+let dog1 = "cat";
+let sound1 = obj1.dog; // => obj.dog not obj[let dog]
+console.log(sound1); // woof
 //This is very different from the other example and
 //it’s because we can’t use variables with dot notation.
 //Attempting to lookup "obj.dog" will actually just
@@ -98,7 +99,7 @@ console.log(colors["yellow Color"]); //#ff0
 //key is based on a variable that can change
 
 color = "green";
-hexColor = "#0f0";
+let hexColor = "#0f0";
 
 //set color with brackets notation to colors object
 colors[color] = hexColor;
@@ -170,4 +171,59 @@ function getColor(key) {
 // console.log(getColor("orange")); //null /undefined
 // II.
 console.log(getColor("orange")); //#f60
+
 //==================
+//====================
+//=======================
+// Dot vs. Bracket Notation
+const me = {
+  firstName: "Zhurka",
+  lastName: "Mrs.Ted",
+  age: 2021 - 1972,
+  job: "Web Dev",
+  friends: ["Ksju", "Ted", "Lena"],
+};
+console.log(me); //Object { firstName: "Zhurka", lastName: "Mrs.Ted", age: 49, job: "Web Dev", friends: (3) […] }
+
+console.log(me.lastName); //Mrs.Ted;
+//key==='string'
+console.log(me["lastName"]); //Mrs.Ted
+
+const nameKey = "Name";
+//in bracets can do operations, concatination:
+console.log(me["first" + nameKey]); //Zhurka
+console.log(me["last" + nameKey]); //Mrs.Ted
+
+//with dot notation concatination won't work:
+// console.log(me.'last' + nameKey)
+
+//prompt returns string
+const interestedIn = prompt(
+  "What do you want to know about me? Choose between firstName, lastName, age, job, and friends"
+);
+//object me[with prompt] => brackets notation,
+//with 'me.interestedIn' => will be 'undefined'!
+//because 'me' doesn't have key 'interestedIn',
+//but me[interestedIn] will work, because JS
+//will replace 'interestedIn' with it value first
+//and than attach to me[]
+if (me[interestedIn]) {
+  console.log(me[interestedIn]); //Web Dev
+  console.log(me.interestedIn); //undefined
+} else {
+  console.log("Wrong request! Choose between firstName, lastName, age, job, and friends");
+}
+
+//add new properties to the object:
+me.location = "Barcelona";
+me["twitter"] = "@zhurka";
+console.log(me); //Object { firstName: "Zhurka", lastName: "Mrs.Ted", age: 49, job: "Web Dev", friends: (3) […], location: "Barcelona", twitter: "@zhurka" }
+
+//------------------
+// Challenge
+// "me has 3 friends, and his best friend is
+// called Ksju"
+console.log(`${me.firstName} has ${me.friends.length} friends, and her best friend is called ${me.friends[0]}`);
+//Zhurka has 3 friends, and his best friend is called Ksju
+console.log(`${me.firstName} has ${me.friends.length} friends, and her best friend is called ${me.friends[1]}`);
+//Zhurka has 3 friends, and her best friend is called Ted

@@ -259,7 +259,8 @@ const calcTips = (bill) => {
 
   totale.push(facturas[indeks] + propinas[indeks]);
   console.log(
-    `For bill ${facturas[indeks]} you should give tips ${propinas[indeks]}. You have to pay together ${totale[indeks]}.`
+    `For bill €${facturas[indeks]} you should give tips €${propinas[indeks]}. 
+    You have to pay together €${totale[indeks]}.`
   );
 
   indeks++;

@@ -1,5 +1,5 @@
-// Objects are used to store unchanging,
-//key:value data.
+// Objects are used to store unstructured,
+//property/key:value data.
 // Think of variables as boxes and objects as file cabinets.
 //Keys are names of files, values are the contents of files.
 // Keys can only be strings, but values can be any data type,
@@ -7,6 +7,7 @@
 // { key: {key: 'value' } }
 //Objects are perfect for grouping together and
 //using static information.
+//In Object order has no matter.
 //=========================
 const blue = "#00f";
 const orange = "#f60";
