@@ -82,40 +82,69 @@ const me = {
   location: "Barcelona",
   twitter: "@zhurka",
   //------------
+  //METHODS
   //function attached to object is 'method':
-  //function expression for creating 'method',
+  //function expression produces value =>
+  //is good for creating 'method' in Object,
   //function declaration won't work!
   // function calcAge(birthYear) {
   // //   return 2021 - birthYear;
   // }
-  // ==>>
-  // calcAge: function (birthYear) {
-  //   return 2021 - birthYear;
-  // }
-  // calcAge: function () {
-  //   // console.log(this);
-  //   return 2021 - this.birthYear;
-  // }
+  // ==>> (1)
+  calcAge: function (birthYear) {
+    return 2021 - birthYear;
+  },
+  // ==>> (2)
+  //'this' allows get 'birthYear' property
+  //directly from 'me' Object instead of having
+  //to pass it as a parameter into this function.
+  //'This' is equal to this object 'me',
+  //object which calling the method=> me.calcAge()
+  calcAge1: function () {
+    //this===me Object
+    console.log(this);
+    //Object { firstName: "Zhurka", lastName: "Mrs.Ted", birthYear: 1972, job: "Web Dev", friends: (3) […], hasDriversLicense: true, location: "Barcelona", twitter: "@zhurka", calcAge: calcAge()
+    console.log(this.birthYear); //1972
+    return 2021 - this.birthYear;
+  },
+  // ==> (3)
+  //calculate 'age' and add it to the
+  //Object 'me' =>after can read as a property
+  //'age' of 'me' object multiple times:
+  calcAge2: function () {
+    //this.age === me.age
+    // this.age = 2021 - this.birthYear;
+    // console.log(this.age); //49
+    //or:
+    this["age"] = 2021 - this.birthYear;
+    console.log(this["age"]); //49
 
-  calcAge: function () {
-    //'this' =>
-    this.age = 2021 - this.birthYear;
     return this.age;
   },
   //-----------------
+  //NB!!! arrow functions don't have a 'this'
+  //keyword => 'this' only applies to normal
+  //functions.
+  //-----------------
   getSummary: function () {
-    return `${this.firstName} is a ${this.calcAge()}-year old ${me.job}, and he has ${
+    return `${this.firstName} is a ${this.calcAge2()}-year old ${me.job}, and she has ${
       this.hasDriversLicense ? "a" : "no"
     } driver's license.`;
   },
 };
-console.log(me.calcAge());
-console.log(me.age);
-console.log(me.age);
-console.log(me.age);
-// Challenge
-// "me is a 46-year old teacher, and he has a driver's license"
+//(1) dot vs brackets notation:
+console.log(me.calcAge(1972)); //49
+console.log(me["calcAge"](1972)); //49
+//--------------------------
+//(2)
+console.log(me.calcAge1()); //49
+//--------------------------
+//(3)
+console.log(me.calcAge2()); //49
+console.log(me.age); //49
+//----------------------
 console.log(me.getSummary());
+//Zhurka is a 49-year old Web Dev, and she has a driver's license.
 
 ///////////////////////////////////////
 // Coding Challenge #3
