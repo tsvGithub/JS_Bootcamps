@@ -84,15 +84,15 @@ const me = {
   //------------
   //METHODS
   //function attached to object is 'method':
-  //function expression produces value =>
+  //function EXPRESSION produces value =>
   //is good for creating 'method' in Object,
-  //function declaration won't work!
+  //NB!function declaration:
   // function calcAge(birthYear) {
   // //   return 2021 - birthYear;
-  // }
+  // }won't work
   // ==>> (1)
   calcAge: function (birthYear) {
-    return 2021 - birthYear;
+    return new Date().getFullYear() - birthYear;
   },
   // ==>> (2)
   //'this' allows get 'birthYear' property
@@ -105,33 +105,37 @@ const me = {
     console.log(this);
     //Object { firstName: "Zhurka", lastName: "Mrs.Ted", birthYear: 1972, job: "Web Dev", friends: (3) […], hasDriversLicense: true, location: "Barcelona", twitter: "@zhurka", calcAge: calcAge()
     console.log(this.birthYear); //1972
-    return 2021 - this.birthYear;
+    return new Date().getFullYear() - this.birthYear;
   },
   // ==> (3)
-  //calculate 'age' and add it to the
-  //Object 'me' =>after can read as a property
-  //'age' of 'me' object multiple times:
+  //calculate 'age' and ADD it to the
+  //Object 'me' as a key =>after can read
+  //property 'age' of 'me' object:
   calcAge2: function () {
     //this.age === me.age
+    //dot notation:
     // this.age = 2021 - this.birthYear;
     // console.log(this.age); //49
-    //or:
-    this["age"] = 2021 - this.birthYear;
+    //or brackets notation:
+    this["age"] = new Date().getFullYear() - this.birthYear;
     console.log(this["age"]); //49
 
     return this.age;
   },
   //-----------------
   //NB!!! arrow functions don't have a 'this'
-  //keyword => 'this' only applies to normal
+  //keyword => 'this' only applies to 'normal'
   //functions.
   //-----------------
   getSummary: function () {
+    //calling 'calcAge2' and not 'me.age', as at this
+    //point 'age' may not exists if calcAge2 didn't run before'
     return `${this.firstName} is a ${this.calcAge2()}-year old ${me.job}, and she has ${
       this.hasDriversLicense ? "a" : "no"
     } driver's license.`;
   },
 };
+//===============
 //(1) dot vs brackets notation:
 console.log(me.calcAge(1972)); //49
 console.log(me["calcAge"](1972)); //49
@@ -149,20 +153,31 @@ console.log(me.getSummary());
 ///////////////////////////////////////
 // Coding Challenge #3
 
-/*
-Let's go back to Mark and John comparing their BMIs! This time, let's use objects to implement the calculations! Remember: BMI = mass / height ** 2 = mass / (height * height). (mass in kg and height in meter)
-1. For each of them, create an object with properties for their full name, mass, and height (Mark Miller and John Smith)
-2. Create a 'calcBMI' method on each object to calculate the BMI (the same method on both objects). Store the BMI value to a property, and also return it from the method.
-3. Log to the console who has the higher BMI, together with the full name and the respective BMI. Example: "John Smith's BMI (28.3) is higher than Mark Miller's (23.9)!"
-TEST DATA: Marks weights 78 kg and is 1.69 m tall. John weights 92 kg and is 1.95 m tall.
-GOOD LUCK 😀
-*/
+// Let's go back to Mark and John comparing their BMIs!
+//This time, let's use objects to implement the calculations!
+// 1. For each of them, create an object with properties for
+//their full name, mass, and height (Mark Miller and John Smith)
+// 2. Create a 'calcBMI' method on each object to calculate
+//the BMI (the same method on both objects). Store the BMI
+//value to a property, and also return it from the method.
+//Remember: BMI = mass / height ** 2 = mass / (height * height).
+//(mass in kg and height in meter)
+// const calcBMI = (mass, height) => {
+//   return (BMI = this.mass / (this.height * this.height));
+// };
+// 3. Log to the console who has the higher BMI, together with the full name and the respective BMI. Example: "John Smith's BMI (28.3) is higher than Mark Miller's (23.9)!"
+// TEST DATA: Marks weights 78 kg and is 1.69 m tall. John weights 92 kg and is 1.95 m tall.
+// GOOD LUCK 😀
 
 const mark = {
   fullName: "Mark Miller",
   mass: 78,
   height: 1.69,
+  //function without any parameters,
+  //because we will take the data directly from the
+  //object.
   calcBMI: function () {
+    //add 'bmi' to the object
     this.bmi = this.mass / this.height ** 2;
     return this.bmi;
   },
@@ -178,7 +193,7 @@ const john = {
 };
 mark.calcBMI();
 john.calcBMI();
-console.log(mark.bmi, john.bmi);
+console.log(mark.bmi, john.bmi); //27.30 24.19
 // "John Smith's BMI (28.3) is higher than Mark Miller's (23.9)!"
 if (mark.bmi > john.bmi) {
   console.log(`${mark.fullName}'s BMI (${mark.bmi}) is higher than ${john.fullName}'s BMI (${john.bmi})`);

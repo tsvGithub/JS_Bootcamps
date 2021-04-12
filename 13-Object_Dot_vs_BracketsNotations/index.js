@@ -190,12 +190,13 @@ console.log(me.lastName); //Mrs.Ted;
 console.log(me["lastName"]); //Mrs.Ted
 
 const nameKey = "Name";
-//in bracets can do operations, concatination:
+//in bracets can do any operations,
+//for example, concatination:
 console.log(me["first" + nameKey]); //Zhurka
 console.log(me["last" + nameKey]); //Mrs.Ted
 
-//with dot notation concatination won't work:
-// console.log(me.'last' + nameKey)
+//!NB: with dot notation concatination won't work:
+// console.log(me.'last' + nameKey) // Error
 
 //prompt returns string
 const interestedIn = prompt(
@@ -204,9 +205,16 @@ const interestedIn = prompt(
 //object me[with prompt] => brackets notation,
 //with 'me.interestedIn' => will be 'undefined'!
 //because 'me' doesn't have key 'interestedIn',
+//that property doesn't exist in 'me' object;
 //but me[interestedIn] will work, because JS
-//will replace 'interestedIn' with it value first
-//and than attach to me[]
+//will replace 'interestedIn' with it actual value
+//first and than attach to me[]
+
+//'undefiened'===false => <if/>
+<else className=""></else>;
+//if this property exists ('true') do that
+//or if property doesn't exust ('false')
+//do another:
 if (me[interestedIn]) {
   console.log(me[interestedIn]); //Web Dev
   console.log(me.interestedIn); //undefined
@@ -216,6 +224,7 @@ if (me[interestedIn]) {
 
 //add new properties to the object:
 me.location = "Barcelona";
+//key===string!
 me["twitter"] = "@zhurka";
 console.log(me); //Object { firstName: "Zhurka", lastName: "Mrs.Ted", age: 49, job: "Web Dev", friends: (3) […], location: "Barcelona", twitter: "@zhurka" }
 

@@ -14,6 +14,7 @@ const orange = "#f60";
 
 // variables - boxes; objects - file cabinets
 
+//Object literal syntax:
 const obj = {
   yellow: "#ff0",
   //if the property has the same name as a value,
