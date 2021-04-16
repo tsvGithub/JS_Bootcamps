@@ -1,0 +1,25 @@
+{
+  "name": "js_bootcamps",
+  "version": "1.0.0",
+  "description": "JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsvGithub/JS_Bootcamps.git"
+  },
+  "keywords": [
+    "JS"
+  ],
+  "author": "tsv",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tsvGithub/JS_Bootcamps/issues"
+  },
+  "homepage": "https://github.com/tsvGithub/JS_Bootcamps#readme",
+  "dependencies": {
+    "live-server": "^1.2.1"
+  }
+}
