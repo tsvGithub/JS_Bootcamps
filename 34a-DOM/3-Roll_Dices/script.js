@@ -29,7 +29,7 @@ let //array of total scores for both players
   //true or false
   playing;
 
-// Starting conditions
+// 5) Starting conditions
 const init = function () {
   //initial values of variables for starting new game:
   //array of total scores for both players:
@@ -60,6 +60,7 @@ const init = function () {
   player0El.classList.add("player--active");
   player1El.classList.remove("player--active");
 };
+//----------
 init();
 
 //==============================
@@ -104,28 +105,41 @@ btnRoll.addEventListener("click", function () {
   }
 });
 //===========================
-//change player
+//3) change player or finish game
 btnHold.addEventListener("click", function () {
+  //if playing is true,
   if (playing) {
-    // 1. Add current score to active player's score
+    // 1. Add current score to active player's total score
     scores[activePlayer] += currentScore;
     // scores[1] = scores[1] + currentScore
 
-    document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
+    //display total score:
+    document.getElementById(
+      //set total score to scores of active player
+      `score--${activePlayer}`
+    ).textContent = scores[activePlayer];
 
-    // 2. Check if player's score is >= 100
+    // 2. Check if player's total score is >= 100
     if (scores[activePlayer] >= 100) {
       // Finish the game
       playing = false;
+      //hide dice
       diceEl.classList.add("hidden");
 
+      //assign winner class
       document.querySelector(`.player--${activePlayer}`).classList.add("player--winner");
+      //remove active player class
       document.querySelector(`.player--${activePlayer}`).classList.remove("player--active");
     } else {
       // Switch to the next player
+      //(2)
       switchPlayer();
     }
   }
 });
 
+//================
+//4) reset all players:
 btnNew.addEventListener("click", init);
+//!NB don't call 'init()' here,
+//it will be JS who calls 'init'
