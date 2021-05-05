@@ -102,7 +102,8 @@ function calcAge(birthYear) {
     console.log(millenial); // false
     //---------------
     //'add' function scope is 'if-else' scope:
-    console.log(add(2, 3)); //Uncaught ReferenceError: add is not defined
+    //***NB!Uncomment next line: =>
+    // console.log(add(2, 3)); //Uncaught ReferenceError: add is not defined
     //functions are not block scoped in 'strict mode'!!!
     // console.log(add(2, 3)); // 5 => without 'strict mode'
 
@@ -116,8 +117,75 @@ const firstName = "Zhur"; //global scope variable (outer scope) is seen from any
 //calcAge have to be called after the firstName declaration!
 calcAge(1972);
 //--------------
-console.log(age);
+//***NB!Uncomment next line: =>
+// console.log(age);
 //Uncaught ReferenceError: age is not defined at index.js:75
 //'age' is in 'calcAge' block scope!!! it is not seen outside 'calcAge' block scope!!!
 //---------------
-printAge(); // doesn't work because of inner scope => it is not seen outside the the calcAge function!
+//***NB!Uncomment next line: =>
+// printAge(); // doesn't work because of inner scope => it is not seen outside the the calcAge function!
+
+//=================================
+//======== HOISTING & TDZ (temporal dead zone)===============
+//Variable environment:
+//Hoisting: Makes some types of variables accessible/usable
+//in the code before they are actually declared.
+//“Variables lifted to the top of their scope”.
+
+// Variables
+console.log(me); //undefined //var hoisted to undefined
+//***NB!Uncomment next line: =>
+// console.log(job); //Uncaught ReferenceError: Cannot access 'job' before initialization
+//***NB!Uncomment next line: =>
+// console.log(year);//Uncaught ReferenceError: Cannot access 'year' before initialization
+var me = "Zhur"; //can call before initialization=> undefined
+let job = "WebDev"; //can't call before initialization
+const year = 1972; //can't call before initialization
+
+// === FUNCTIONS ===
+//OK:
+console.log(addDecl(2, 3)); //5
+// NOT OK:
+//***NB!Uncomment next line: =>
+// console.log(addExpr(2, 3)); //Uncaught ReferenceError: Cannot access 'addExpr' before initialization
+console.log(addArrow); //undefined
+//NOT OK:
+//***NB!Uncomment next line: =>
+// console.log(addArrow(2, 3));//Uncaught TypeError: addArrow is not a function
+//------------------
+
+//FUNCTION DECLARATION: can call before define code!
+function addDecl(a, b) {
+  return a + b;
+}
+//FUNCTION EXPRESSION: can't call before initialization
+const addExpr = function (a, b) {
+  return a + b;
+};
+//ARROW FUNCTION: can't call before initialization
+var addArrow = (a, b) => a + b;
+
+//-----------------
+// Example
+console.log(numProducts); //undefined
+//3
+if (!numProducts) deleteShoppingCart();
+//2
+var numProducts = 10;
+//1
+//function declaration:
+function deleteShoppingCart() {
+  console.log("All products deleted!");
+}
+//All products deleted! Even Products are 10!
+//Because of hoisting of var: in if scope
+//numProducts is undefined!!!! because it is before var initialization
+
+//--------------
+var x = 1;
+//let & const don't create a property of the 'window' object!
+let y = 2;
+const z = 3;
+console.log(x === window.x); //true
+console.log(y === window.y); //false
+console.log(z === window.z); //false
