@@ -84,12 +84,14 @@ const me = {
   //------------
   //METHODS
   //function attached to object is 'method':
+  //----------------
   //function EXPRESSION produces value =>
   //is good for creating 'method' in Object,
-  //NB!function declaration:
+  //NB!function DECLARATION:
   // function calcAge(birthYear) {
   // //   return 2021 - birthYear;
   // }won't work
+  //-----------------------
   // ==>> (1)
   calcAge: function (birthYear) {
     return new Date().getFullYear() - birthYear;
