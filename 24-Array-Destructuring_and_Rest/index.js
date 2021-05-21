@@ -144,6 +144,7 @@ const restaurant = {
 console.log(restaurant);
 //========================
 //=========   I   =========
+//destructuring 2 elements from the array:
 let [firstR, secondR] = restaurant.categories;
 console.log(firstR, secondR); //Italian Pizzeria
 
@@ -151,7 +152,7 @@ console.log(firstR, secondR); //Italian Pizzeria
 let [pervyj, , tretij] = restaurant.categories;
 console.log(pervyj, tretij); //Italian Vegetarian
 
-//to SWITCH ELEMENTS from the array:
+//to SWITCH (mutate) ELEMENTS from the array:
 // console.log(firstR, secondR); //Italian Pizzeria
 //*************************old way =>
 // const temp = pervyj;
@@ -172,7 +173,7 @@ console.log(firstR, secondR); // Pizzeria Italian
 //=====================+=====
 //=========  II  ==========
 // (3) Recieve TWO returned values from a function:
-//call method 'order' with 2 parameters
+//call method 'order' with 2 arguments
 //the first for starterMenu & the second
 //for mainMenu:
 console.log(restaurant.order(2, 0));
