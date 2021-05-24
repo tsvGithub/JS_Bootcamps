@@ -100,6 +100,7 @@ musicVenues(recommendations);
 //================================================================
 //=====================================
 //======================
+//The Complete JS Course 2021:
 const weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 // const openingHours = {
 //   [weekdays[3]]: {
@@ -152,29 +153,31 @@ const restaurant = {
     //is doing in the call of the function
   },
 
-  // ES6 enhanced object literals
-  // // openingHours,
-
-  // // order(starterIndex, mainIndex) {
-  // //   return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
-  // // },
-
-  // // orderDelivery({ starterIndex = 1, mainIndex = 0, time = "20:00", address }) {
-  // //   console.log(
-  // //     `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
-  // //   );
-  // // },
-
-  // // orderPasta(ing1, ing2, ing3) {
-  // //   console.log(`Here is your declicious pasta with ${ing1}, ${ing2} and ${ing3}`);
-  // // },
-
-  // // orderPizza(mainIngredient, ...otherIngredients) {
-  // //   console.log(mainIngredient);
-  // //   console.log(otherIngredients);
-  // },
+  //----------------
+  //VI. Order of parameters:
+  //VIa.Pass in the function an object of
+  //options as parameter
+  //(common case in JS third-part libraries)
+  orderDelivery(obj) {
+    console.log(obj);
+  },
+  //VIb. Destructuring parameters from the object (below).
+  //The great is that the order of parameters is not matter.
+  orderDeliveryC({ starterIndex, mainIndex, time, address }) {
+    console.log(
+      `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+    );
+  },
+  //VIc. Default values for destructured parameters:
+  orderDeliveryD({ starterIndex = 1, mainIndex = 0, time = "20:00", address }) {
+    console.log(
+      `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+    );
+  },
 };
+
 //==============================
+//I. DESTRUCTURING Object
 //To destructure Object, use {} and inside use
 //variable names that exactly match the property
 //names that want to retrieve from the object.
@@ -183,12 +186,15 @@ console.log(restaurantName, openingHours, categories);
 //Classico Italiano {thu: {…}, fri: {…}, sat: {…}} (4) ["Italian", "Pizzeria", "Vegetarian", "Organic"]
 
 //---------------------------
-//Variable names are different from property names:
+//II. RENAME OBJECT PROPERTIES
+//Variable names are DIFFERENT from property
+//names => {object property: new name}
 const { openingHours: hours, categories: tags } = restaurant;
 console.log(hours, tags);
 //{thu: {…}, fri: {…}, sat: {…}} (4) ["Italian", "Pizzeria", "Vegetarian", "Organic"]
 
 //---------------------------
+//III.DEFAULT VALUE
 //Setting a DEFAULT VALUE for property that does not exist
 //on the object to not recieve 'undefined'.
 console.log(restaurant.menu); //undefined =>
@@ -203,13 +209,13 @@ console.log(menu, starters);
 //has its own value.
 
 //---------------------------
+//IV. MUTATING VARIABLES
 //Mutating variables while destructuring objects.
 let a = 111;
 let b = 999;
 const obj = { a: 23, b: 7, c: 14 };
-//destructure object & override variables 'a' and 'b':
-//Can't do this way:
-// { a, b } = obj;
+//Destructure object & override variables 'a' and 'b':
+//Can't do this way: { a, b } = obj;
 // console.log(a, b); //Uncaught SyntaxError: Unexpected token '='
 //When start a line with a '{}', then JS expects
 //a code block. The trick is to wrap the
@@ -218,16 +224,48 @@ const obj = { a: 23, b: 7, c: 14 };
 console.log(a, b); //23 7
 
 //---------------------------------
-//NESTED Objects:
+//V.NESTED Objects:
 const { fri } = openingHours;
 console.log(fri); //{open: 11, close: 23}
 //To get two variables 'open' and 'close',
+//destructuring 'open' and 'close' from
+//'openingHours', not from 'restaurants'!!!
 const {
   fri: { open, close },
 } = openingHours;
 console.log(open, close); //11 23
-//assign different variables 'open' and 'close' to 'o' & 'c':
+//assign different variables 'open' and 'close'
+// to 'o' & 'c' variables:
 const {
   fri: { open: o, close: c },
 } = openingHours;
 console.log(o, c); // 11 23
+//-----------------------
+//VI.Object as parameters:
+//VIa: Call the function & pass in an object of
+//options (common case in JS for third-part libraries)
+//But also can do destructuring right away
+//in the function's parameters (VIb)!
+restaurant.orderDelivery({
+  time: "22.30",
+  address: "Via del sole, 21",
+  mainIndex: 2,
+  starterIndex: 2,
+});
+//{time: "22.30", address: "Via del sole, 21", mainIndex: 2, starterIndex: 2}
+//VIb:
+restaurant.orderDeliveryC({
+  time: "22.30",
+  address: "Via del sole, 21",
+  mainIndex: 2,
+  starterIndex: 2,
+});
+//Order received! Garlic Bread and Risotto will be delivered to Via del sole, 21 at 22.30
+//VIc.
+restaurant.orderDeliveryD({
+  // time: "20.00",
+  address: "Via del sole, 21",
+  // mainIndex: 2,
+  starterIndex: 1,
+});
+//Order received! Bruschetta and Pizza will be delivered to Via del sole, 21 at 20:00
