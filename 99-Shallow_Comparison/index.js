@@ -1,3 +1,15 @@
+//---------SHALLOW COPY vs DEEP COPY -------
+//In programming, we store values in variables.
+//Making a copy means that you initiate a new
+//variable with the same value(s). However, there is
+//a big potential pitfall to consider:
+//deep copying vs. shallow copying.
+//A deep copy means that all of the values of the new
+//variable are copied and disconnected from the original
+//variable. A shallow copy means that certain (sub-)values
+//are still connected to the original variable.
+
+//-----SHALLOW COMPARISON ----------------
 // With Javascript's 'strict equal' operator (===),
 // any primitive types that have the same value and
 // type are considered true.
