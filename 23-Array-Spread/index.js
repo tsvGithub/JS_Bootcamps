@@ -1,6 +1,30 @@
 "use strict";
 //=============================
 //============================
+
+//************************************
+//SPREAD Operator vs REST operator
+//The main difference:
+//· The REST operator is used in places where we would otherwise
+//write variable names separated by commas. This is because the REST
+//operator collects elements (variable names) into an array or object
+// – both of which are composed of elements (variable names) separated
+// by commas. Thus, they can be used in places where arrays or objects
+//can be used, such as…
+//     o Function parameters (when declaring/ expressing a function)
+//     o Left side of a destructuring assignment ( to collect individual
+//       elements into an object or an array which will be used to deconstruct
+//       the object or array on the right side of the assignment operator.
+//
+//· The SPREAD operator is used in places where we would otherwise
+//write values separated by commas. This is because the SPREAD operator
+//spreads elements into individual values. Thus, they can be used in places
+//where individual elements can be used, such as…
+//     o Function arguments (when calling a function)
+//     o In an array or object, on the right side of a destructuring assignment
+//       (to be assigned to the variables on the left side of the assignment operator).
+//***************************************************
+
 //SPREAD
 const arr = [7, 8, 9];
 //add to 'arr' new elements to the beginning:

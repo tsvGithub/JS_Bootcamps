@@ -213,3 +213,56 @@ console.log(p, q, r); //8 9 undefined
 //to avoid 'undefined' set default value:
 const [v, w, h = 1] = [8, 9];
 console.log(v, w, h); //8 9 1
+
+//========================
+//REST PATTERN & OPERATOR
+//************************************
+//SPREAD Operator vs REST operator
+//The main difference:
+//· The REST operator is used in places where we would otherwise
+//write variable names separated by commas. This is because the REST
+//operator collects elements (variable names) into an array or object
+// – both of which are composed of elements (variable names) separated
+// by commas. Thus, they can be used in places where arrays or objects
+//can be used, such as…
+//     o Function parameters (when declaring/ expressing a function)
+//     o Left side of a destructuring assignment ( to collect individual
+//       elements into an object or an array which will be used to deconstruct
+//       the object or array on the right side of the assignment operator.
+//
+//· The SPREAD operator is used in places where we would otherwise
+//write values separated by commas. This is because the SPREAD operator
+//spreads elements into individual values. Thus, they can be used in places
+//where individual elements can be used, such as…
+//     o Function arguments (when calling a function)
+//     o In an array or object, on the right side of a destructuring assignment
+//       (to be assigned to the variables on the left side of the assignment operator).
+//***************************************************
+//Spread => unpacks arrays; it use for functions
+//Spread: because on RIGHT side of '='; on the
+//LEFT side of '=' together with destructuring.
+const arr = [1, 2, ...[3, 4]];
+//On the LEFT side of '=' is REST
+const [aa, bb, ...others] = [1, 2, 3, 4, 5];
+console.log(aa, bb, others); //1 2 [3, 4, 5]
+//REST is the rest of the array that will be
+//put into a new array ('others'). Rest collects
+//elements from the array that unused with
+//destructuring assignment.
+
+//******** '...' using as SPREAD, DESTRUCTURING and REST ****************
+//Make copy of 2 arrays using the SPREAD operator
+//(Right) and put them into an one new array;
+//On the LEFT side make DESTRUCTURING from the
+//new array (first and third elements and skip
+//the second element) and REST of the elements
+//from the new array put into new array 'otherFood';
+const [pizza, , risotto, ...otherFood] = [...restaurant.mainMenu, ...restaurant.starterMenu];
+console.log(pizza, risotto, otherFood);
+//Pizza Risotto ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"]
+//NB! Rest not includes any skipped elements,
+//just the rest elements after destructured elements.
+
+//NB!!! REST must be the last element:
+// const [pizza, , risotto, ...otherFood, bread] = [...restaurant.mainMenu, ...restaurant.starterMenu];
+// Uncaught SyntaxError: Rest element must be last element
