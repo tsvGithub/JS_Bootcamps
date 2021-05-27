@@ -1,3 +1,4 @@
+"use strict";
 // We can make conditionals shorter with logical
 //operators such as || (or) and && (and).
 //This is known as short-circuiting
@@ -18,7 +19,7 @@
 
 // || => A or B  one is true
 //          A
-//     AND TRUE FALSE
+//     OR TRUE FALSE
 // B| TRUE TRUE TRUE
 //   FALSE TRUE FALSE
 
@@ -95,6 +96,108 @@ const username1 =
 //3) ||
 
 console.log(username1);
+
+//==========================
+//=================================
+//********SHORT CIRCUITING*********
+//'OR': for default value
+//1)is 'true' if one of the operators is 'truthy'
+//2)returns first 'truthy' value or the LAST value,
+//if all operands all 'falsy'.
+
+//If the first value is a truthy value, it
+//will immediately return that first value,
+//the second operator will not even be evaluated.
+console.log(3 || "Zhur"); //3
+//returns 'truthy' string:
+console.log("" || "Zhur"); //"Zhur"
+console.log(true || 0); //true
+console.log(undefined || null); //null =>
+//'undefined'===falsy & null ===falsy : returns
+//the last value.
+
+console.log(undefined || 0 || "" || "Hello" || 23 || null);
+//'Hello'
+
+const restaurant = {
+  name: "Classico Italiano",
+  location: "Via Angelo Tavanti 23, Firenze, Italy",
+  categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
+  starterMenu: ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"],
+  mainMenu: ["Pizza", "Pasta", "Risotto"],
+
+  orderPizza(mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
+  },
+};
+//'guests' is 'numGuests' or default value:
+const guests = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests); // 10
+//Object 'restaurant' does not have the property
+//'numGuests', so it is 'undefined' || 10 =>
+//will return 10
+
+restaurant.numGuests = 23;
+console.log(restaurant.numGuests); //23
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+//Object 'restaurant' has the property
+//'numGuests', so it is  23 || 10 =>
+//will return 23
+console.log(guests1); //23
+
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2); //23
+
+//!!!NB If
+restaurant.numSeats = 0; //0===false
+//teranry & short circuiting won't work!!!
+const seats1 = restaurant.numSeats ? restaurant.numSeats : 10;
+const seasts2 = restaurant.numSeats || 10;
+console.log(seats1, seasts2);
+//10 10
+
+//-----------------------------
+//-------------------------------
+//'AND': for execute code in the second operand,
+//if the first one is true.
+//1) Will return the first 'falsy' value
+//or the last ('truthy) value if all of
+//them are 'truthy'.
+
+//If the first value is 'falsy' it will
+//immediately return 'false' value without
+//even evaluate the second value
+console.log(0 && "Zhur"); // 0
+//if the first value is 'truthy', then the
+//second value will return.
+console.log(7 && "Zhur"); // 'Zhur'
+console.log(7 && 0); // 0
+
+console.log("String" && 23 && null && "Zhur");
+//null
+//when 'truthy' evaluetion is continued untill
+//false operator and will return it.
+
+//Check if the method 'orderPizza' is exists and
+//if it is, call it:
+if (restaurant.orderPizza) {
+  restaurant.orderPizza("mushrooms", "spinach");
+}
+//mushrooms
+// ["spinach"]
+
+//or un that way with Short Circuit:
+//1) if restaurant.orderPizza does not exist,
+//so it's undefined, it will then short circuit
+//the evaluetion and nothing else will happen.
+//If restaurant.orderPizza does exist, if it
+//a truthy part, then the second part here will
+//be evaluated. And the second operand will
+//call the function with arguments:
+restaurant.orderPizza && restaurant.orderPizza("tomatos", "cheese");
+//tomatos
+// ["cheese"]
 
 //============================
 //===========================
