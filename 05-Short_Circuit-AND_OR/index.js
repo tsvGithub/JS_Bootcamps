@@ -100,9 +100,10 @@ console.log(username1);
 //==========================
 //=================================
 //********SHORT CIRCUITING*********
-//'OR': for default value
+//'OR':
+//Use for setting default values.
 //1)is 'true' if one of the operators is 'truthy'
-//2)returns first 'truthy' value or the LAST value,
+//2)returns FIRST 'truthy' value or the LAST value,
 //if all operands all 'falsy'.
 
 //If the first value is a truthy value, it
@@ -159,10 +160,11 @@ console.log(seats1, seasts2);
 
 //-----------------------------
 //-------------------------------
-//'AND': for execute code in the second operand,
+//'AND':
+//Uses for execute code in the SECOND OPERAND,
 //if the first one is true.
-//1) Will return the first 'falsy' value
-//or the last ('truthy) value if all of
+//1) Will return the FIRST 'FALSY' value
+//or the LAST 'TRUTHY' value if all of
 //them are 'truthy'.
 
 //If the first value is 'falsy' it will

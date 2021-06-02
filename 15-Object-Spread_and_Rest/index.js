@@ -1,3 +1,4 @@
+"use strict";
 // Object.assign() allows us to merge properties
 //from two or more objects into a new object:
 // Object.assign({}, user, newUser)
