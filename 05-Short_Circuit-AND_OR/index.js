@@ -12,13 +12,13 @@
 
 // Logical Operators &&, || and NOT
 // && => A & B all are true
-//          A
+//             A
 //     AND TRUE FALSE
 // B| TRUE TRUE FALSE
 //   FALSE FALSE FALSE
 
 // || => A or B  one is true
-//          A
+//             A
 //     OR TRUE FALSE
 // B| TRUE TRUE TRUE
 //   FALSE TRUE FALSE
