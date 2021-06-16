@@ -102,40 +102,39 @@ musicVenues(recommendations);
 //======================
 //The Complete JS Course 2021:
 const weekdays = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
-// const openingHours = {
-//   [weekdays[3]]: {
-//     open: 12,
-//     close: 22,
-//   },
-//   [weekdays[4]]: {
-//     open: 11,
-//     close: 23,
-//   },
-//   [weekdays[5]]: {
-//     open: 0, // Open 24 hours
-//     close: 24,
-//   },
-// };
+//separate object for 'restaurant' object:
+const openingHours = {
+  //destructuring array 'weekdays':
+  [weekdays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  [weekdays[4]]: {
+    open: 11,
+    close: 23,
+  },
+  //computing property name using a template literal
+
+  [`day-${2 + 4}`]: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+};
 const restaurant = {
   restaurantName: "Classico Italiano",
   location: "Via Angelo Tavanti 23, Firenze, Italy",
   categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
   starterMenu: ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"],
   mainMenu: ["Pizza", "Pasta", "Risotto"],
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
-  },
+  //to have 'openingHours' object inside this object:
+  // openingHours: openingHours,
+  //or with ES6 enhanced object literals if
+  //property name is exactly the same as key name:
+  openingHours,
+  //---------------------
+  //Methods:
+  //order: function(starterIndex, mainIndex){
+  //or with ES6 enhanced object literals:
   order(starterIndex, mainIndex) {
     // return the content of the arrays based
     //on the given indexes:
@@ -175,14 +174,16 @@ const restaurant = {
     );
   },
 };
+console.log(restaurant);
 
 //==============================
 //I. DESTRUCTURING Object
 //To destructure Object, use {} and inside use
 //variable names that exactly match the property
 //names that want to retrieve from the object.
-const { restaurantName, openingHours, categories } = restaurant;
-console.log(restaurantName, openingHours, categories);
+//!!!Uncomment these lines:
+// const { restaurantName, openingHours, categories } = restaurant;
+// console.log(restaurantName, openingHours, categories);
 //Classico Italiano {thu: {…}, fri: {…}, sat: {…}} (4) ["Italian", "Pizzeria", "Vegetarian", "Organic"]
 
 //---------------------------
