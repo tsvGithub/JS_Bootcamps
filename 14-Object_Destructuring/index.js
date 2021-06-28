@@ -114,7 +114,6 @@ const openingHours = {
     close: 23,
   },
   //computing property name using a template literal
-
   [`day-${2 + 4}`]: {
     open: 0, // Open 24 hours
     close: 24,

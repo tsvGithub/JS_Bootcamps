@@ -96,15 +96,24 @@ console.log(regularDishes); //Array(3) [ "Grilled Tuna Provencal", "Fish and Chi
 //======================
 //======================
 //====================
-//Destructuring is retrieving elements from the array:
+//DESTRUCTURING is breaking a complex data structure
+//down into a smaller data structure like a variable.
+
+//ARRAY DESTRUCTURING:
+//Destructuring is retrieving elements from the
+//array into separate variables:
 const aarr = [1, 2, 3];
 //old way =>
 const a = aarr[0];
 const b = aarr[1];
 const c = aarr[2];
-//ES6 => destructuring assignment
+//ES6 => destructuring assignment:
+//destructuring 3 variiables in left side
+//([z,y,z] is not an array, it is 'destructuring' )
+//from the right side (aarr => array)
 const [x, y, z] = aarr;
 console.log(x, y, z); // 1 2 3
+//the original array is not affected!:
 console.log(aarr); //[1,2,3]
 
 //--------------
@@ -144,11 +153,13 @@ const restaurant = {
 console.log(restaurant);
 //========================
 //=========   I   =========
-//destructuring 2 elements from the array:
+//destructuring 2 (first& second) elements
+//from the array:
 let [firstR, secondR] = restaurant.categories;
 console.log(firstR, secondR); //Italian Pizzeria
 
-//to skip second element, just put 'comma' instead of that element:
+//to skip second element, just put 'comma'
+//instead of that element:
 let [pervyj, , tretij] = restaurant.categories;
 console.log(pervyj, tretij); //Italian Vegetarian
 
@@ -193,10 +204,9 @@ console.log(starter, main);
 //NESTED ARRAY DESTRUCTURING
 const nested = [2, 4, [5, 6]];
 //to get the first and the third ([5,6])
-//elements:
+//elements from the array 'nested':
 const [i, , j] = nested;
-console.log(i, j);
-//(2) [5, 6]
+console.log(i, j); //(2) [5, 6]
 //To get all the individual values,
 //need to do destructuring inside of destructuring:
 const [e, , [l, m]] = nested;
@@ -205,14 +215,171 @@ console.log(e, l, m); //2 5 6
 //=======================
 //============ IV =================
 //DEFAULT VALUES FOR DESTRUCTURING
-//Set default values for the variables when
+//Set DEFAULT VALUES for the variables when
 //extracting them. Useful when is not known of
 //the length of the array or for API:
 const [p, q, r] = [8, 9];
 console.log(p, q, r); //8 9 undefined
-//to avoid 'undefined' set default value:
+//--------------------
+//to avoid 'undefined' set DEFAULT VALUES:
 const [v, w, h = 1] = [8, 9];
 console.log(v, w, h); //8 9 1
+
+//============== !!! =====================
+//==========================
+//Destructuring позволяет быстрее получать (выбирать)
+//определённые значения из массивов и Objects. Можно из
+//массива сразу забирать нужные значения.
+
+// Можно забирать из массивов так:
+const array99 = [1, 2, 3, 5, 8, 13];
+const aa = array99[0];
+const bb = array99[1];
+console.log(aa, bb);
+// 1 2
+// --------------------------------
+// Или так:
+// Выборка с destructuring:
+// ARRAY [массив] Создаём переменную 'aaa' и 'bbb'
+// и их оборачиваем в [квадратные скобки], и дальше
+//говорим, из какого массива я их создаю (из массива 'array').
+const [aaa, bbb] = array99;
+
+//раньше                     //с destructuring
+// const a = array[0];          const [a,b] = array
+// const b = array[1];   // =>
+// console.log(a, b);           console.log(a, b);
+//  1 2                       > 1 2
+
+// -------------------------------------
+//Можно также применять оператор  …SPREAD ,
+//забрав все остальные значения, например, в переменную 'c'.
+const [a1, b1, ...c1] = array99;
+console.log(a1, b1, c1);
+//1 2 [ 3, 5, 8, 13 ] //a=1, b=2, c=[3,5,8,13] массив из всех остальных значений массива
+//-------------------------------------------------
+//Благодаря данному синтаксису мы можем задавать значения
+//по умолчанию (default params):
+//Например, если переменная 'b2' будет не определена, то
+//ей зададим значение  42.
+const [a2, b2 = 42, ...c2] = array99;
+console.log(a2, b2, c2);
+//1 2 [ 3, 5, 8, 13 ] // b2 = всё равно 2, a не 42.
+//Но если в массиве второй элемент будет 'undefined':
+const array = [1, undefined, 3, 5, 8, 13];
+const [a3, b3 = 42, ...c3] = array99;
+console.log(a3, b3, c3);
+//1 42 [ 3, 5, 8, 13 ]  // b = 42
+//---------------------------------------------------------
+//Например, нам нужно выбрать нулевой и второй элементы:
+const [a4, b4, c4] = array99;
+console.log(a, c);
+// 1 3
+// или так:
+const [a5, , c5] = array99;
+console.log(a, c);
+// 1 3
+
+//========================================
+//https://www.youtube.com/watch?v=wWYokY0Pt2M&list=PLqKQF2ojwm3l4oPjsB9chrJmlhZ-zOzWT&index=16
+//Массивы:
+//Функция, осуществляющая математические действия
+//для двух входящих величин. Как результат этих
+//действий будем возвращать массив. Сформируем
+//массив с помощью квадратных скобок и как разные
+//элементы массива вставляем сюда разные операции.
+//Первый элемент массива это a + b, а второй элемент
+//массива это a - b
+function calcValues(a, b) {
+  return [a + b, a - b];
+}
+console.log(calcValues(42, 10));
+(2)[(52, 32)]; //получаем массив
+
+//Создадим переменные того чтобы хранить эти результаты вычислений.
+//Сумма a + b это первый элемент result[0] получаемого
+//массива , который мы записали в переменную result и
+//её мы положим в sum.  Вычитание - второй элемент массива
+//result[1] и его мы кладём в sub.
+const result = calcValues(42, 10);
+const sum1 = result[0];
+const sub1 = result[1];
+console.log(sum1, sub1);
+//52 32
+
+//Предыдущую запись можно улучшить (сократить) с
+//помощью деструктуризации. Вместо того, чтобы
+//отдельно обращаться к какому-либо индексу массива,
+//мы можем создать переменные из массива result и
+//квадратными скобками мы говорим, что здесь будет
+//деструктуризация . И дальше в квадратных скобках
+//поочерёдно перечисляем названия переменных, которые
+//будут принимать значения нужных индексов.
+let [sum, sub] = result;
+console.log(sum, sub);
+//52 32
+
+//Можно переменную result отдельно не создавать.
+//Можно сразу в квадратных скобках создавать переменные
+//[sum, sub] из массива result. Потому что результатом
+//работы функции calcValues является массив, который мы
+//сразу же можем разбить.
+[sum, sub] = calcValues(42, 10);
+console.log(sum, sub);
+//52 32
+
+//Добавим ещё операции для функции
+function calcValues(a, b) {
+  return [a + b, a - b, a * b, a / b];
+}
+//Если мы хотим получить только сумму и умножение mult.
+let mult, other;
+[sum, sub, mult] = calcValues(42, 10);
+console.log(sum, mult);
+//52 420
+//Проблема в том, что мы создаём переменную вычитания sub,
+//но мы её не используем. При работе с массивами при
+//деструктуризации можно ненужную переменную опустить и
+//записать так. Данная дополнительная запятая говорит о том,
+//что мы пропускаем один индекс и не создаём отдельную переменную.
+[sum, , mult] = calcValues(42, 10);
+console.log(sum, mult);
+//52 420
+
+//Можно применять оператор "rest" если мы хотим получить
+//все остальные значения (у нас здесь это только деление,
+//потому что вычитание у нас игнорируется) и собрать в массив other.
+[sum, , mult, ...other] = calcValues(42, 10);
+console.log(sum, mult, other);
+//52 420 [4.2]
+//--------------------------------------------
+//DEFAULT VALUE
+//Допустим, по какой-то причине у нас нет вычитания
+//и вместо него undefined, но мы хотим получить значение
+//вычитания в отдельную переменную sub. Получаем undefined.
+function calcValues(a, b) {
+  return [a + b, undefined, a * b, a / b];
+}
+[sum, sub, mult, ...other] = calcValues(42, 10);
+console.log(sum, mult, other, sub);
+//52 420 [4.2] undefined
+
+//При работе с деструктуризацией можно задавать значения по умолчанию,
+//если какие-то значения не определены undefined, то тогда задаётся
+// дефолтное значение (default value) (sub = "Вычитания нет").
+[sum, sub = "Вычитания нет", mult, ...other] = calcValues(42, 10);
+console.log(sum, mult, other, sub);
+//52 420 [4.2] "Вычитания нет"
+
+//А если значение задано, то дефолтное значение игнорируется:
+function calcValues(a, b) {
+  return [a + b, a - b, a * b, a / b];
+}
+[sum, sub = "Вычитания нет", mult, ...other] = calcValues(42, 10);
+console.log(sum, mult, other, sub);
+//52 420 [4.2] 32
+
+/**********************************************/
 
 //========================
 //REST PATTERN & OPERATOR
@@ -243,8 +410,8 @@ console.log(v, w, h); //8 9 1
 //LEFT side of '=' together with destructuring.
 const arr = [1, 2, ...[3, 4]];
 //On the LEFT side of '=' is REST
-const [aa, bb, ...others] = [1, 2, 3, 4, 5];
-console.log(aa, bb, others); //1 2 [3, 4, 5]
+const [a1a, b1b, ...others] = [1, 2, 3, 4, 5];
+console.log(a1a, b1b, others); //1 2 [3, 4, 5]
 //REST is the rest of the array that will be
 //put into a new array ('others'). Rest collects
 //elements from the array that unused with
